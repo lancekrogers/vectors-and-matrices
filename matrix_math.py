@@ -1,13 +1,28 @@
+import math
+
+
+
+
 class ShapeException(Exception):
     pass
 
 
-def dot():
-    pass
+def dot(one_vector, two_vector):
+
+    if len(one_vector) == len(two_vector):
+        dots_one = [x for x in one_vector]
+        dots_two = [x for x in two_vector]
+        dots = [a*b for a,b in zip(dots_one, dots_two)]
+        return dots
+    else:
+        pass
+
+dot((1,2,3),(4,5,6))
 
 
-def magnitude():
-    pass
+def magnitude(one_vector):
+    squares = [x**2 for x in one_vector]
+    return (math.sqrt(sum(squares)))
 
 
 def shape():
@@ -52,5 +67,3 @@ def matrix_vector_multiply():
 
 def matrix_matrix_multiply():
     pass
-
-
