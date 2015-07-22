@@ -1,5 +1,5 @@
-import math
-
+from functools import reduce
+import numpy as np
 
 
 
@@ -7,63 +7,88 @@ class ShapeException(Exception):
     pass
 
 
-def dot(one_vector, two_vector):
-
-    if len(one_vector) == len(two_vector):
-        dots_one = [x for x in one_vector]
-        dots_two = [x for x in two_vector]
-        dots = [a*b for a,b in zip(dots_one, dots_two)]
-        return dots
+def shape_check(a, b):
+    if len(a) != len(b):
+        raise ShapeException
     else:
         pass
 
-dot((1,2,3),(4,5,6))
+
+def dot(vect_one, vect_two):
+    shape_check(vect_one, vect_two)
+    hammer = []
+    for x in range(len(vect_one)):
+        num = vect_one[x] * vect_two[x]
+        hammer.append(num)
+    return sum(hammer)
 
 
-def magnitude(one_vector):
-    squares = [x**2 for x in one_vector]
-    return (math.sqrt(sum(squares)))
+
+def magnitude(vect):
+    list = [x**2 for x in vect]
+    return (sum(list))**.5
 
 
-def shape():
+def shape(container):
+    try:
+        row = len(container[0])
+    except TypeError:
+        return len(container),
+    return row, len(container)
+
+
+def vector_add(vect_one, vect_two):
+    shape_check(vect_one, vect_two)
+    new_vect = []
+    for x in range(len(vect_one)):
+        num = vect_one[x] + vect_two[x]
+        new_vect.append(num)
+    return new_vect
+
+
+def vector_sub(vect_one, vect_two):
+    shape_check(vect_one, vect_two)
+    new_vect = []
+    for x in range(len(vect_one)):
+        num = vect_one[x] - vect_two[x]
+        new_vect.append(num)
+    return new_vect
+
+def vector_sum(*args):
+    reduce(shape_check, tuple(args))
+    values = [x for x in args]
+    other = []
+    for x in range(len(values[0])):
+        num = sum(values[x-1])
+        other.append(num)
+    return other
+
+def vector_multiply(vect, scalar):
+    new_vect = [x * scalar for x in vect]
+    return new_vect
+
+
+def vector_mean(*args):
+   reduce(shape_check, tuple(args))
+   return (reduce(vector_add, tuple(args))) / len(args)
+
+
+
+def matrix_row(matrix, row):
     pass
 
 
-def vector_add():
+def matrix_col(matrix, col):
     pass
 
 
-def vector_sub():
+def matrix_scalar_multiply(matrix, scalar):
     pass
 
 
-def vector_sum():
+def matrix_vector_multiply(matrix, vector):
     pass
 
 
-def vector_multiply():
-    pass
-
-
-def vector_mean():
-    pass
-
-
-def matrix_row():
-    pass
-
-
-def matrix_col():
-    pass
-
-
-def matrix_scalar_multiply():
-    pass
-
-
-def matrix_vector_multiply():
-    pass
-
-
-def matrix_matrix_multiply():
+def matrix_matrix_multiply(matrix_one, matrix_two):
     pass

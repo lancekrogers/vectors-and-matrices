@@ -1,6 +1,6 @@
 from matrix_math import *
 from nose.tools import raises
-
+import math
 
 def is_equal(x, y, tolerance=0.001):
     """Helper function to compare floats, which are often not quite equal
