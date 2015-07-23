@@ -75,11 +75,16 @@ def vector_mean(*args):
 
 
 def matrix_row(matrix, row):
-    pass
+    return matrix[row]
+
+
 
 
 def matrix_col(matrix, col):
-    pass
+    return [row[col] for row in matrix]
+
+
+
 
 
 def matrix_scalar_multiply(matrix, scalar):
