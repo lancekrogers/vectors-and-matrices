@@ -103,6 +103,4 @@ def matrix_vector_multiply(m, v):
 
 
 def matrix_matrix_multiply(matrix_one, matrix_two):
-    shape_check(matrix_one, matrix_two)
-
-
+    shape_check(len(matrix_col(matrix_one, 0)), len(matrix_row(matrix_two, 0)))
